@@ -1,13 +1,3 @@
 <?php require 'partials/head.php'; ?>
-      <ul>
-        <?php foreach ($task as $item): ?>
-          <li>
-            <?php if ($item->completed ): ?>
-              <strike><?=$item->description; ?></strike>
-            <?php else: ?>
-                <?=$item->description; ?>
-            <?php endif; ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
+  <h1>Home Page</h1>
 <?php require 'partials/footer.php'; ?>

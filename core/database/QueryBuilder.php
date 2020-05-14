@@ -11,11 +11,28 @@
     }
     public function selectAll($table)
     {
-      $statement = $this->pdo->prepare("select * from {$table}");
+      $statement = $this->pdo->prepare("SELECT * FROM {$table}");
 
       $statement->execute();
 
       return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function insert($table, $parameter)
+    {
+      $sql = sprintf(
+        'INSERT INTO %s (%s) VALUES (%s)',
+        $table,
+        implode(',', array_keys($parameter)),
+        ':'.implode(', :', array_keys($parameter))
+      );
+      // die(var_dump($sql));
+      try {
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute($parameter);
+      } catch (Exception $e) {
+        die('Something when wrong');
+      }
     }
   }
  ?>
