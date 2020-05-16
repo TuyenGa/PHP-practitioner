@@ -5,7 +5,7 @@ return [
   'database' => [
 
 
-      'name'=> 'mytodo',
+      'name'=> 'datatruyentranh',
       'username'=>'root',
       'password'=>'',
       'connections'=>'mysql:host=127.0.0.1',
