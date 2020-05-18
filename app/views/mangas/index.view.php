@@ -51,8 +51,8 @@
                       <td><?= $manga->tenTruyen; ?></td>
                       <td><?= $manga->tenChap; ?></td>
                       <td><img style="width: 100px; height: 150px;" src="<?= $manga->linkAnh; ?>" /></td>
-                      <td><button class="btn btn-block btn-primary">Edit</button></td>
-                      <td><button class="btn btn-block btn-primary">Delete</button></td>
+                      <td><a href="/mangas/show?id=<?php echo $manga->id ?>" class="btn btn-block btn-primary">Edit</a></td>
+                      <td><button onclick="mangasDelete(<?php echo $manga->id; ?>)" class="btn btn-block btn-primary">Delete</button></td>
                     </tr>
                     <?php endforeach; ?>
                   </tbody>

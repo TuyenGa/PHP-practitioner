@@ -13,3 +13,6 @@ $router->get('users', 'UsersController@index');
 $router->get('mangas', 'MangasController@index');
 $router->get('mangas/store', 'MangasController@store');
 $router->post('mangas/create', 'MangasController@create');
+$router->get("mangas/show", 'MangasController@show');
+$router->post("mangas/update", "MangasController@update");
+$router->get("mangas/delete", "MangasController@delete");

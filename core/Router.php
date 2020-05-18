@@ -5,7 +5,7 @@ class Router
 
   public $routes = [
     'GET' => [],
-    'POST' => []
+    'POST' => [],
   ];
 
 
@@ -31,7 +31,7 @@ class Router
 
   public function direct($uri, $requestType)
   {
-
+   
     //about/culture
     if (array_key_exists($uri,$this->routes[$requestType])) {
 

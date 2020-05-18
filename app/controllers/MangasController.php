@@ -25,12 +25,43 @@ class MangasController {
 
     public function create()
     {
-
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        App::get('database')->insert('users', compact('name'));
+        $tenTruyen = $_POST['name'];
+        $tenChap = $_POST['chapter'];
+        $linkAnh = $_POST['linkImage'];
+        App::get('database')::insert('truyen', compact('tenTruyen', 'tenChap', 'linkAnh'));
 
         return redirect('mangas');
+    }
+
+    public function show()
+    {
+        $id = $_GET["id"];
+        $head = [
+            'title' => "Edit Manga",
+            'sidebarActive' => '/mangas'
+        ];
+        $manga = App::get('database')->selectWithId('truyen', $id);
+        return view("mangas.show", compact('manga', 'head'));
+    }
+
+    public function update()
+    {
+        $id = $_GET["id"];
+        $tenTruyen = $_POST['name'];
+        $tenChap = $_POST['chapter'];
+        $linkAnh = $_POST['linkImage'];
+        App::get('database')->update('truyen', compact('tenTruyen', 'tenChap', 'linkAnh'), $id);
+        return redirect("mangas");
+    }
+
+    public function delete()
+    {
+
+        $id = $_GET["id"];
+
+        App::get('database')->delete('truyen', $id);
+        return redirect('mangas');
+
     }
 
 }
