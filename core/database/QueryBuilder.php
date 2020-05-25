@@ -9,9 +9,9 @@
     {
       self::$pdo = $pdo;
     }
-    public function selectAll($table)
+    public function selectAll($table, $where = "")
     {
-      $statement = self::$pdo->prepare("SELECT * FROM {$table}");
+    $statement = self::$pdo->prepare("SELECT * FROM {$table} {$where}" );
 
       $statement->execute();
 
@@ -52,7 +52,6 @@
           $cols[] = "$key = '$val'";
       }
       $sql = sprintf("UPDATE %s SET %s WHERE id=%s", $table, implode(', ', $cols), $id );
-
       try {
         $statement = self::$pdo->prepare($sql);
         $statement->execute();

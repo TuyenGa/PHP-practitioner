@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Mangas</h1>
+            <a href="/mangas"><i class="fa fa-arrow-left"></i> Back</a>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Mangas</li>
+              <li class="breadcrumb-item active">Chapter</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,12 +24,9 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Mangas Table</h3>
-
+                 <h3 class="card-title"><?php  echo $truyen['tenTruyen']; ?></h3>
                 <div class="card-tools">
-                  <form action="/mangas/store">
-                    <button type="submit" class="btn btn-block btn-primary">Add New</button>
-                  </form>
+                    <a href="/chapter/store?truyen_id=<?php echo $truyen['id'];?>"><button class="btn btn-block btn-primary">Add New Chapter</button></a>
                 </div>
               </div>
               <div class="card-body">
@@ -37,22 +34,20 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
-                      <th>Chapter</th>
-                      <th>Preview</th>
+                      <th>Chap</th>
+                      <th>Update at</th>
                       <th></th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($mangas as $manga): ?>
+                    <?php foreach($chapters as $chapter): ?>
                     <tr>
-                      <td><?= $manga->id; ?></td>
-                      <td><a href="/chapter?truyen_id=<?= $manga->id; ?>"><?= $manga->tenTruyen; ?></a></td>
-                      <td><?= $manga->tenChap; ?></td>
-                      <td><img style="width: 100px; height: 150px;" src="<?= $manga->linkAnh; ?>" /></td>
-                      <td><a href="/mangas/show?id=<?php echo $manga->id ?>" class="btn btn-block btn-primary">Edit</a></td>
-                      <td><button onclick="mangasDelete(<?php echo $manga->id; ?>)" class="btn btn-block btn-primary">Delete</button></td>
+                      <td><?= $chapter->id; ?></td>
+                      <td><?= $chapter->tenchap; ?></td>
+                      <td><?= $chapter->ngaynhap; ?></td>
+                      <td><a href="/chapter/show?id=<?php echo $chapter->id ?>" class="btn btn-block btn-primary">Edit</a></td>
+                      <td><a href="/chapter/update/img?chapter_id=<?php echo $chapter->id ?>" class="btn btn-block btn-primary">Update Anh</a></td>
                     </tr>
                     <?php endforeach; ?>
                   </tbody>

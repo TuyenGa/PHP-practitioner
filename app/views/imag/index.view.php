@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Mangas</h1>
+            <a href="/mangas"><i class="fa fa-arrow-left">Back</i></a>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Mangas</li>
+              <li class="breadcrumb-item active">Anh</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,39 +24,39 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Mangas Table</h3>
-
+                 <h3 class="card-title"><?php  echo $chapter['tenchap']; ?></h3>
                 <div class="card-tools">
-                  <form action="/mangas/store">
-                    <button type="submit" class="btn btn-block btn-primary">Add New</button>
-                  </form>
+                    <a href="/images/store?chapter_id=<?php echo $chapter['id'];?>"><button class="btn btn-block btn-primary">Add New Images</button></a>
                 </div>
               </div>
               <div class="card-body">
+              <?php if (count($anh) < 1): ?>
+                <h3>Images is empty</h3>
+              <?php else: ?>
               <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
-                      <th>Chapter</th>
-                      <th>Preview</th>
+                      <th>Link</th>
                       <th></th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($mangas as $manga): ?>
+                    <?php $i = 1; ?>
+                    <?php foreach($anh as $img): ?>
                     <tr>
-                      <td><?= $manga->id; ?></td>
-                      <td><a href="/chapter?truyen_id=<?= $manga->id; ?>"><?= $manga->tenTruyen; ?></a></td>
-                      <td><?= $manga->tenChap; ?></td>
-                      <td><img style="width: 100px; height: 150px;" src="<?= $manga->linkAnh; ?>" /></td>
-                      <td><a href="/mangas/show?id=<?php echo $manga->id ?>" class="btn btn-block btn-primary">Edit</a></td>
-                      <td><button onclick="mangasDelete(<?php echo $manga->id; ?>)" class="btn btn-block btn-primary">Delete</button></td>
+                      <td><?= $i ?></td>
+                      <td><?= $img->imgAnh; ?></td>
+                      <td><?= $img->ngaynhap; ?></td>
+                      <td><a href="/images/show?id=<?php echo $img->id ?>" class="btn btn-block btn-primary">Edit</a></td>
+                      <td><button onclick="imagesDelete(<?php echo $img->id?>)" class="btn btn-block btn-primary">Delete</button></td>
                     </tr>
+                    <?php $i++; ?>
                     <?php endforeach; ?>
                   </tbody>
-                </table>
+                </table> 
+                <?php endif ?>
               </div>
               </div>
             <!-- /.card -->
